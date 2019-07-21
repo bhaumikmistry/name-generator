@@ -8,4 +8,5 @@ SOURCES += \
 
 HEADERS += \
     generator.h \
-    helper.h
+    helper.h \
+    sub.h

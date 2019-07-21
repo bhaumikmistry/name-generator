@@ -1,39 +1,75 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
-#include <string>
+#include "sub.h"
+#include <vector>
+#include <memory>
 
-struct sub
+class generator
 {
-    sub()
-    {}
-    sub(bool use,std::string value)
-        :m_to_use(use),
-          m_value(value)
-    {}
+private:
+    bool NAME_GENERATED = true;
 
-    bool m_to_use;
-    std::string m_value;
+    std::vector<std::shared_ptr<sub>> m_name_sequence;
+    sub m_name;
 
-    void operator=(bool use)
+public:
+    generator(){}
+    ~generator(){}
+    void AddToSequence( std::shared_ptr<sub> item)
     {
-        m_to_use = use;
+        this->m_name_sequence.push_back(item);
+    }
+    void ClearSequence()
+    {
+        this->m_name_sequence.clear();
     }
 
-    void operator+=(std::string value)
+    std::vector<std::shared_ptr<sub>> GetNameSequence()
     {
-        m_value = value;
+        return m_name_sequence;
     }
 
-    void operator=(std::string value)
+    std::string Get(bool force=false)
     {
-        m_value = value;
+
+        if(!this->m_name || force)
+        {
+            Generate();
+        }
+        return this->m_name.m_value;
     }
 
-    explicit operator bool()
+    void Generate()
     {
-        return m_to_use;
+        this->m_name = NAME_GENERATED;
+        this->m_name = std::string("");
+        for(auto string_to_add : m_name_sequence)
+        {
+            this->m_name+=(string_to_add)?string_to_add->m_value:"";
+        }
     }
+
+
+};
+
+class basicName : public generator
+{
+public:
+    sub name={true,"basicName"};
+    sub time={true,"1970"};
+
+    basicName(){}
+    ~basicName(){}
+
+    void UpdateSequene()
+    {
+        this->AddToSequence(std::make_shared<sub>(name));
+        this->AddToSequence(std::make_shared<sub>(time));
+    }
+
+
 };
 
 #endif // GENERATOR_H
+
