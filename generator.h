@@ -15,7 +15,8 @@ private:
 
 public:
     generator(){}
-    ~generator(){}
+    virtual ~generator(){}
+protected:
     void AddToSequence( std::shared_ptr<sub> item)
     {
         this->m_name_sequence.push_back(item);
@@ -24,12 +25,12 @@ public:
     {
         this->m_name_sequence.clear();
     }
-
     std::vector<std::shared_ptr<sub>> GetNameSequence()
     {
         return m_name_sequence;
     }
-
+    virtual void UpdateSequence(){}
+public:
     std::string Get(bool force=false)
     {
 
@@ -39,17 +40,17 @@ public:
         }
         return this->m_name.m_value;
     }
-
     void Generate()
     {
+        this->UpdateSequence();
         this->m_name = NAME_GENERATED;
         this->m_name = std::string("");
         for(auto string_to_add : m_name_sequence)
         {
-            this->m_name+=(string_to_add)?string_to_add->m_value:"";
+            if(string_to_add->m_to_use)
+                this->m_name+=string_to_add->m_value;
         }
     }
-
 
 };
 
@@ -60,10 +61,12 @@ public:
     sub time={true,"1970"};
 
     basicName(){}
-    ~basicName(){}
+    ~basicName() override
+    {}
 
-    void UpdateSequene()
+    void UpdateSequence() override
     {
+        this->ClearSequence();
         this->AddToSequence(std::make_shared<sub>(name));
         this->AddToSequence(std::make_shared<sub>(time));
     }
