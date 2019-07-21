@@ -5,3 +5,7 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp
+
+HEADERS += \
+    generator.h \
+    helper.h

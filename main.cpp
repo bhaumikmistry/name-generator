@@ -1,9 +1,9 @@
 #include <iostream>
-
+#include "helper.h"
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    log_debug(" main()");
     return 0;
 }
