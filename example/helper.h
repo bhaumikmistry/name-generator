@@ -2,6 +2,14 @@
 #define HELPER_H
 #include <iostream>
 
+/**
+ * @brief log
+ * used for basic logs with file and line name.
+ * @param data
+ * @param level
+ * @param file
+ * @param line
+ */
 void log(char * data,char * level,const char * file,int line)
 {
     std::cout << "[" << level << "] ";

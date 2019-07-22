@@ -1,12 +1,7 @@
-TEMPLATE = app
-CONFIG += console c++11
-CONFIG -= app_bundle
-CONFIG -= qt
-
-SOURCES += \
-        main.cpp
-
-HEADERS += \
-    generator.h \
-    helper.h \
-    sub.h
+TEMPLATE = lib
+CONFIG += c++11
+HEADERS += generator.h\
+        sub.h
+DESTDIR += $$PWD/Lib/
+Release:TARGET = libgenerator
+Debug:TARGET = libgenerator_d
