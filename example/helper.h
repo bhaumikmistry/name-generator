@@ -10,7 +10,7 @@
  * @param file
  * @param line
  */
-void log(char * data,char * level,const char * file,int line)
+void log(const char * data,char * level,const char * file,int line)
 {
     std::cout << "[" << level << "] ";
     std::cout << data << " (" <<file << ":" << line << ")" << std::endl;

@@ -96,25 +96,5 @@ public:
 
 };
 
-class basicName : public generator
-{
-public:
-    sub name={true,"basicName"};
-    sub time={true,"1970"};
-
-    basicName(){}
-    ~basicName() override
-    {}
-
-    void UpdateSequence() override
-    {
-        this->ClearSequence();
-        this->AddToSequence(std::make_shared<sub>(name));
-        this->AddToSequence(std::make_shared<sub>(time));
-    }
-
-
-};
-
 #endif // GENERATOR_H
 
