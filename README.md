@@ -2,7 +2,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/bhaumikmistry/name-generator/blob/master/CONTRIBUTING.md)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bhaumikmistry/name-generator/blob/master/LICENSE)
 
-a light weight c++ library to generate names on the for repetative and different task.
+a light weight c++ library to generate names at runtime for repetative and different task.
 
 for instance 
 ```
